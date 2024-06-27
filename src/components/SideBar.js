@@ -24,6 +24,10 @@ const sidebar = ({mobileOpen, handleDrawerToggle}) =>{
                 <ListItem button component="a" href="/fraccRegister">
                     <ListItemText primary="Registrar Fraccionamiento"></ListItemText>
                 </ListItem>
+
+                <ListItem button component="a" href="/map">
+                    <ListItemText primary="Ver mapa"></ListItemText>
+                </ListItem>
             </List>
         </div>
     );

@@ -1,6 +1,7 @@
 import React from "react";
 import Appbar from "../components/AppBar";
 import Sidebar from "../components/SideBar";
+import MapComponent from "../components/MapComponent";
 
 import { Box, Typography } from "@mui/material";
 
@@ -13,6 +14,7 @@ const HomePage = () => {
             <Typography variant="h3" gutterBottom>
                 Bienvenido
             </Typography>
+            <MapComponent></MapComponent>
         </Box>
     );
 };

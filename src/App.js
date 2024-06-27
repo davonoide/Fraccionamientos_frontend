@@ -9,6 +9,8 @@ import RegisterPage from './pages/RegisterPage';
 import { AppBar, Box, CssBaseline, Toolbar} from '@mui/material';
 import HomePage from './pages/HomePage';
 import FraccPage from './pages/FraccPage';
+import MapComponent from './components/MapComponent';
+import ProtectedRoute from './components/ProtectedRoute';
 
 
 // function App() {
@@ -41,7 +43,7 @@ const App = ()=>{
 
       <Box sx={{display:'flex'}}>
         <CssBaseline/>
-        <Appbar handleDrawerToggle={handleDrawerToggle}/>
+        {/* <Appbar handleDrawerToggle={handleDrawerToggle}/> */}
         <Sidebar mobileOpen={mobileOpen} handleDrawerToggle={handleDrawerToggle}/>
         <Box
             component="main"
@@ -53,8 +55,11 @@ const App = ()=>{
             <Route path='/' element={<LoginPage/>} />
             <Route path='/login' element={<LoginPage/>} />
             <Route path='/register' element={<RegisterPage/>} />
-            <Route path='/home' element={<HomePage></HomePage>}></Route>
-            <Route path='/fraccRegister' element={<FraccPage></FraccPage>}></Route>
+            <Route path='/home' element={<HomePage></HomePage>}/>
+            <Route path='/fraccRegister' element={<FraccPage></FraccPage>}/>
+            <Route path='/map' 
+                  element={<ProtectedRoute element={MapComponent}/>} 
+            />
           </Routes>
 
         </Box>
