@@ -1,63 +1,62 @@
-import React from "react";
-import { Drawer, List, ListItem, ListItemText, Divider } from "@mui/material";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Drawer, List, ListItem, ListItemText, useTheme, useMediaQuery } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 const drawerWidth = 240;
 
+const Sidebar = ({ mobileOpen, handleDrawerToggle }) => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
+  const drawer = (
+    <div>
+      <List>
+{/*         <ListItem button component={Link} to="/login">
+          <ListItemText primary="Login" />
+        </ListItem> */}
+        <ListItem button component={Link} to="/register">
+          <ListItemText primary="Registrar Usuario" />
+        </ListItem>
+        <ListItem button component={Link} to="/fraccRegister">
+          <ListItemText primary="Registrar Fraccionamiento" />
+        </ListItem>
+        <ListItem button component={Link} to="/map">
+          <ListItemText primary="Ver mapa" />
+        </ListItem>
+      </List>
+    </div>
+  );
 
-const sidebar = ({mobileOpen, handleDrawerToggle}) =>{
-
-    const drawer = (
-        <div>
-            <div style={{height:64}}/>
-            <Divider/>
-            <List>
-                <ListItem button component="a" href="/login">
-                    <ListItemText primary="Login"></ListItemText>
-
-                </ListItem>
-                <ListItem button component="a" href="/register">
-                    <ListItemText primary="Registrar"></ListItemText>
-                </ListItem>
-
-                <ListItem button component="a" href="/fraccRegister">
-                    <ListItemText primary="Registrar Fraccionamiento"></ListItemText>
-                </ListItem>
-
-                <ListItem button component="a" href="/map">
-                    <ListItemText primary="Ver mapa"></ListItemText>
-                </ListItem>
-            </List>
-        </div>
-    );
-
-return(
-
+  return (
     <nav>
-        <Drawer variant="temporary" 
-                open={mobileOpen} 
-                onClose={handleDrawerToggle} 
-                anchor="left">
-
-                {drawer}
-
-        </Drawer>
-
-        <Drawer
-                variant="permanent"
-                sx={{
-                    display: { xs: 'none', sm: 'block' },
-                    '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
-                }}
-                open
-        >
-                    {drawer}
-        </Drawer>
+      {/* Drawer for mobile */}
+      <Drawer
+        variant="temporary"
+        open={mobileOpen}
+        onClose={handleDrawerToggle}
+        ModalProps={{
+          keepMounted: true, // Better open performance on mobile.
+        }}
+        sx={{
+          display: { xs: 'block', sm: 'none' },
+          '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth, marginTop:'10%' ,zIndex: theme.zIndex.drawer + 1 },
+        }}
+      >
+        {drawer}
+      </Drawer>
+      {/* Drawer for desktop */}
+      <Drawer
+        variant="permanent"
+        sx={{
+          display: { xs: 'none', sm: 'block' },
+          '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth, top: '64px' },
+        }}
+        open
+      >
+        {drawer}
+      </Drawer>
     </nav>
-
-    
-);
+  );
 };
 
-export default sidebar;
+export default Sidebar;
